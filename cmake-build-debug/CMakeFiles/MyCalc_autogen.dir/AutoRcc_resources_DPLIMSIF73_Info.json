@@ -1,0 +1,32 @@
+{
+	"BUILD_DIR" : "C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/MyCalc_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Lev/CLionProjects/MyCalc",
+	"CMAKE_SOURCE_DIR" : "C:/Users/Lev/CLionProjects/MyCalc",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/MyCalc_autogen/include",
+	"INPUTS" : 
+	[
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/COperator.qml",
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/MultiplicationOperator.qml",
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/PlusOperator.qml",
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/MinusOperator.qml",
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/EqualOperator.qml",
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/DivisionOperator.qml",
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/PercentOperator.qml",
+		"C:/Users/Lev/CLionProjects/MyCalc/qml/operators/PlusMinusOperator.qml"
+	],
+	"LOCK_FILE" : "C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/MyCalc_autogen.dir/AutoRcc_resources_DPLIMSIF73_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "resources_DPLIMSIF73" ],
+	"OUTPUT_CHECKSUM" : "DPLIMSIF73",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "C:/Qt/6.10.2/mingw_64/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/MyCalc_autogen.dir/AutoRcc_resources_DPLIMSIF73_Used.txt",
+	"SOURCE" : "C:/Users/Lev/CLionProjects/MyCalc/qml/operators/resources.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

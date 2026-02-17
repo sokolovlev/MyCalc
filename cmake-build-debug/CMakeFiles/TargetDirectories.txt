@@ -1,0 +1,6 @@
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/MyCalc.dir
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/MyCalc_qmlimportscan.dir
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/MyCalc_autogen_timestamp_deps.dir
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/CMakeFiles/MyCalc_autogen.dir

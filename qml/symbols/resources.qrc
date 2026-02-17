@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/symbols">
+
+        <file>DotSym.qml</file>
+        <file>EightSym.qml</file>
+        <file>FiveSym.qml</file>
+        <file>FourSym.qml</file>
+        <file>NineSym.qml</file>
+        <file>OneSym.qml</file>
+        <file>SevenSym.qml</file>
+        <file>SixSym.qml</file>
+        <file>BracketsSym.qml</file>
+        <file>ThreeSym.qml</file>
+        <file>TwoSym.qml</file>
+        <file>ZeroSym.qml</file>
+
+    </qresource>
+</RCC>

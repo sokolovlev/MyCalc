@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/operators">
+
+        <file>PlusOperator.qml</file>
+        <file>MinusOperator.qml</file>
+        <file>MultiplicationOperator.qml</file>
+        <file>DivisionOperator.qml</file>
+        <file>EqualOperator.qml</file>
+        <file>PercentOperator.qml</file>
+        <file>PlusMinusOperator.qml</file>
+        <file>COperator.qml</file>
+
+    </qresource>
+</RCC>

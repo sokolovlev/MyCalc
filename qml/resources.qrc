@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/main">
+
+        <file>Main.qml</file>
+        <file>screen1.qml</file>
+        <file>screen2.qml</file>
+        <file>NumPad.qml</file>
+        <file>KeyBoard.qml</file>
+        <file>CalculationBack.qml</file>
+        <file>MainPlate.qml</file>
+        <file>CalculationData.qml</file>
+        <file>Last3sym.qml</file>
+        <file>Result.qml</file>
+
+    </qresource>
+</RCC>

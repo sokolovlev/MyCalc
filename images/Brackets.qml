@@ -1,0 +1,46 @@
+// Generated from SVG file nef/brackets.svg
+import QtQuick
+import QtQuick.VectorImage
+import QtQuick.VectorImage.Helpers
+import QtQuick.Shapes
+
+Item {
+    implicitWidth: 30
+    implicitHeight: 30
+    component AnimationsInfo : QtObject
+    {
+        property bool paused: false
+        property int loops: 1
+        signal restart()
+    }
+    property AnimationsInfo animations : AnimationsInfo {}
+    transform: [
+        Scale { xScale: width / 30; yScale: height / 30 }
+    ]
+    id: __qt_toplevel
+    Shape {
+        id: _qt_node0
+        ShapePath {
+            id: _qt_shapePath_0
+            strokeColor: "#ffffffff"
+            strokeWidth: 2
+            capStyle: ShapePath.RoundCap
+            joinStyle: ShapePath.RoundJoin
+            miterLimit: 4
+            fillColor: "#00000000"
+            fillRule: ShapePath.WindingFill
+            PathSvg { path: "M 12 5 C 12 5 9 9 9 15 C 9 21 12 25 12 25 " }
+        }
+        ShapePath {
+            id: _qt_shapePath_1
+            strokeColor: "#ffffffff"
+            strokeWidth: 2
+            capStyle: ShapePath.RoundCap
+            joinStyle: ShapePath.RoundJoin
+            miterLimit: 4
+            fillColor: "#00000000"
+            fillRule: ShapePath.WindingFill
+            PathSvg { path: "M 18 25 C 18 25 21 21 21 15 C 21 9 18 5 18 5 " }
+        }
+    }
+}

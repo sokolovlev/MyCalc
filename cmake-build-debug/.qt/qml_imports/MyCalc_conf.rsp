@@ -1,0 +1,9 @@
+-rootPath
+C:/Users/Lev/CLionProjects/MyCalc
+-cmake-output
+-output-file
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug/.qt/qml_imports/MyCalc_conf.cmake
+-importPath
+C:/Users/Lev/CLionProjects/MyCalc/cmake-build-debug
+-importPath
+C:/Qt/6.10.2/mingw_64/qml

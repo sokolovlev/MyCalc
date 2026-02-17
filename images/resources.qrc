@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/images">
+
+        <file>plusminus.svg</file>
+        <file>division.svg</file>
+        <file>plus.svg</file>
+        <file>minus.svg</file>
+        <file>brackets.svg</file>
+        <file>equal.svg</file>
+        <file>multiplication.svg</file>
+        <file>percent.svg</file>
+
+        <file>PlusMinus.qml</file>
+        <file>Division.qml</file>
+        <file>Plus.qml</file>
+        <file>Minus.qml</file>
+        <file>Brackets.qml</file>
+        <file>Equal.qml</file>
+        <file>Multiplication.qml</file>
+        <file>Percent.qml</file>
+
+    </qresource>
+</RCC>
