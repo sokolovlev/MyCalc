@@ -41,10 +41,10 @@ Item
         verticalAlignment: Text.AlignVCenter
 
         color: "#FFFFFF"
-        font.family: "OpenSansSemibold"
+        font.family: OpenSansSemibold
         font.pixelSize: Math.round(parent.height * 0.1282)
         font.letterSpacing: Math.round(parent.height * 0.003205)
-        font.weight: 550
+        font.weight: 600
 
         text: DataString.dataString
     }
@@ -64,10 +64,10 @@ Item
         verticalAlignment: Text.AlignVCenter
 
         color: "#FFFFFF"
-        font.family: "OpenSansSemibold"
+        font.family: OpenSansSemibold
         font.pixelSize: Math.round(parent.height * 0.326)
         font.letterSpacing: Math.round(parent.height * 0.003205)
-        font.weight: 550
+        font.weight: 600
 
         text: Result.view()
     }

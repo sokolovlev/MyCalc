@@ -17,9 +17,9 @@ Rectangle
         anchors.centerIn: parent
         color: "#FFFFFF"
 
-        font.family: "OpenSansSemibold"
+        font.family: OpenSansSemibold
         font.pixelSize: parent.width * 0.4
-        font.weight: 550
+        font.weight: 600
         text: "C"
     }
 

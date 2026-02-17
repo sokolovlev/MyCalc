@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    int fontId = QFontDatabase::addApplicationFont(":/fonts/OpenSansSemibold.ttf");   //"Open Sans"
-    QStringList families = QFontDatabase::applicationFontFamilies(fontId); //  список названий добавленных шрифтов
+    int fontId = QFontDatabase::addApplicationFont(":/fonts/OpenSansSemibold.ttf");      //"Open Sans"
+    QStringList families = QFontDatabase::applicationFontFamilies(fontId);      //  список названий добавленных шрифтов
 
     qmlRegisterSingletonType(QUrl("qrc:/main/CalculationData.qml"), "MyCalc", 1, 0, "DataString");
     qmlRegisterSingletonType(QUrl("qrc:/main/Last3sym.qml"), "MyCalc", 1, 0, "Last3sym");
