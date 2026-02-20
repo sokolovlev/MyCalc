@@ -1,143 +1,180 @@
 #include "ParserClass.h"
-#include <QChar>
-#include <cmath>
 
 ParserClass::ParserClass(const QString &calculationData)
     : m_expression(calculationData), m_pos(0)
-{}
-
-double ParserClass::evaluate()
 {
     tokenize();
+}
+
+cpp_dec_float_50 ParserClass::evaluate()
+{
     m_pos = 0;
-    return parseExpression();
+    cpp_dec_float_50 result = parseExpression();
+
+    if (!check(TokenType::End))
+        throw std::runtime_error("Unexpected token at end of expression");
+
+    return result;
+}
+
+QString ParserClass::evaluateToString(int precision)
+{
+    cpp_dec_float_50 value = evaluate();
+
+    std::string str = value.str(precision, std::ios_base::fixed);
+
+    if (str.find('.') != std::string::npos)
+    {
+        while (!str.empty() && str.back() == '0')
+            str.pop_back();
+
+        if (!str.empty() && str.back() == '.')
+            str.pop_back();
+    }
+
+    return QString::fromStdString(str);
 }
 
 void ParserClass::tokenize()
 {
     m_tokens.clear();
-    int pos = 0;
+    int i = 0;
 
-    while (pos < m_expression.length())
+    while (i < m_expression.length())
     {
-        QChar c = m_expression[pos];
+        QChar ch = m_expression[i];
 
-        if (c.isSpace()) { pos++; continue; }
-
-        if (c.isDigit() || c == '.')
+        if (ch.isSpace())
         {
-            QString numberStr;
-            bool dotSeen = false;
-
-            while (pos < m_expression.length() &&
-                   (m_expression[pos].isDigit() || m_expression[pos] == '.'))
-            {
-                if (m_expression[pos] == '.')
-                {
-                    if (dotSeen) throw std::runtime_error("Invalid number format");
-                    dotSeen = true;
-                }
-                numberStr += m_expression[pos++];
-            }
-
-            m_tokens.append({TokenType::Number, numberStr});
+            ++i;
+            continue;
         }
-        else
+
+        if (ch.isDigit() || ch == '.')
         {
-            switch (c.unicode())
+            QString number;
+            while (i < m_expression.length() &&
+                   (m_expression[i].isDigit() || m_expression[i] == '.'))
             {
-                case '+': m_tokens.append({TokenType::Plus, ""}); pos++; break;
-                case '-': m_tokens.append({TokenType::Minus, ""}); pos++; break;
-                case '*': m_tokens.append({TokenType::Mul, ""}); pos++; break;
-                case '/': m_tokens.append({TokenType::Div, ""}); pos++; break;
-                case '%': m_tokens.append({TokenType::Mod, ""}); pos++; break;
-                case '(': m_tokens.append({TokenType::LParen, ""}); pos++; break;
-                case ')': m_tokens.append({TokenType::RParen, ""}); pos++; break;
-                default:
-                    throw std::runtime_error(QString("Unexpected character: %1").arg(c).toStdString());
+                number += m_expression[i];
+                ++i;
             }
+            m_tokens.append({TokenType::Number, number});
+            continue;
         }
+
+        switch (ch.unicode())
+        {
+        case '+': m_tokens.append({TokenType::Plus, "+"}); break;
+        case '-': m_tokens.append({TokenType::Minus, "-"}); break;
+        case '*': m_tokens.append({TokenType::Mul, "*"}); break;
+        case '/': m_tokens.append({TokenType::Div, "/"}); break;
+        case '%': m_tokens.append({TokenType::Mod, "%"}); break;
+        case '(': m_tokens.append({TokenType::LParen, "("}); break;
+        case ')': m_tokens.append({TokenType::RParen, ")"}); break;
+        default:
+            throw std::runtime_error("Invalid character in expression");
+        }
+
+        ++i;
     }
 
     m_tokens.append({TokenType::End, ""});
 }
 
-// ===== Parser =====
-
-double ParserClass::parseExpression()
+cpp_dec_float_50 ParserClass::parseExpression()
 {
-    double value = parseTerm();
+    cpp_dec_float_50 value = parseTerm();
 
-    while (match(TokenType::Plus) || match(TokenType::Minus))
+    while (true)
     {
-        TokenType op = previous().type;
-        double right = parseTerm();
-        if (op == TokenType::Plus) value += right;
-        else value -= right;
+        if (match(TokenType::Plus))
+            value += parseTerm();
+        else if (match(TokenType::Minus))
+            value -= parseTerm();
+        else
+            break;
     }
 
     return value;
 }
 
-double ParserClass::parseTerm()
+cpp_dec_float_50 ParserClass::parseTerm()
 {
-    double value = parseFactor();
+    cpp_dec_float_50 value = parseFactor();
 
-    while (match(TokenType::Mul) || match(TokenType::Div) || match(TokenType::Mod))
+    while (true)
     {
-        TokenType op = previous().type;
-        double right = parseFactor();
-
-        if (op == TokenType::Mul) value *= right;
-        else if (op == TokenType::Div)
+        if (match(TokenType::Mul))
         {
-            if (right == 0) throw std::runtime_error("Division by zero");
-            value /= right;
+            value *= parseFactor();
         }
-        else // Mod
+        else if (match(TokenType::Div))
         {
-            if (right == 0) throw std::runtime_error("Modulo by zero");
-            value = fmod(value, right);
+            cpp_dec_float_50 divisor = parseFactor();
+            if (divisor == 0)
+                throw std::runtime_error("Division by zero");
+            value /= divisor;
+        }
+        else if (match(TokenType::Mod))
+        {
+            cpp_dec_float_50 divisor = parseFactor();
+            if (divisor == 0)
+                throw std::runtime_error("Modulo by zero");
+
+            value = fmod(value, divisor);
+        }
+        else
+        {
+            break;
         }
     }
 
     return value;
 }
 
-double ParserClass::parseFactor()
+cpp_dec_float_50 ParserClass::parseFactor()
 {
-    if (match(TokenType::Minus)) return -parseFactor();
+    if (match(TokenType::Minus))
+        return -parseFactor();
 
     if (match(TokenType::Number))
-        return previous().text.toDouble();
+        return cpp_dec_float_50(previous().text.toStdString());
 
     if (match(TokenType::LParen))
     {
-        double value = parseExpression();
+        cpp_dec_float_50 value = parseExpression();
         if (!match(TokenType::RParen))
-            throw std::runtime_error("Expected closing parenthesis");
+            throw std::runtime_error("Expected ')'");
         return value;
     }
 
     throw std::runtime_error("Unexpected token");
 }
 
-// ===== Helpers =====
-
 bool ParserClass::match(TokenType type)
 {
-    if (check(type)) { advance(); return true; }
+    if (check(type))
+    {
+        advance();
+        return true;
+    }
     return false;
 }
 
 bool ParserClass::check(TokenType type) const
 {
+    if (m_pos >= m_tokens.size())
+        return false;
+
     return m_tokens[m_pos].type == type;
 }
 
 const ParserClass::Token &ParserClass::advance()
 {
-    return m_tokens[m_pos++];
+    if (m_pos < m_tokens.size())
+        ++m_pos;
+    return previous();
 }
 
 const ParserClass::Token &ParserClass::previous() const

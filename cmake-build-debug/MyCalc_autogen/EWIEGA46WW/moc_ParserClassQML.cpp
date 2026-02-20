@@ -46,7 +46,7 @@ template <> constexpr inline auto ParserClassQML::qt_create_metaobjectdata<qt_me
 
     QtMocHelpers::UintData qt_methods {
         // Method 'evaluate'
-        QtMocHelpers::MethodData<double(const QString &)>(1, 2, QMC::AccessPublic, QMetaType::Double, {{
+        QtMocHelpers::MethodData<QString(const QString &)>(1, 2, QMC::AccessPublic, QMetaType::QString, {{
             { QMetaType::QString, 3 },
         }}),
     };
@@ -72,8 +72,8 @@ void ParserClassQML::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
     auto *_t = static_cast<ParserClassQML *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: { double _r = _t->evaluate((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])));
-            if (_a[0]) *reinterpret_cast<double*>(_a[0]) = std::move(_r); }  break;
+        case 0: { QString _r = _t->evaluate((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])));
+            if (_a[0]) *reinterpret_cast<QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }

@@ -7,26 +7,30 @@
 
 #include <QObject>
 #include <QString>
+#include <QDebug>
 #include "ParserClass.h"
 
 class ParserClassQML : public QObject
 {
     Q_OBJECT
-public:
-    explicit ParserClassQML(QObject *parent = nullptr) : QObject(parent) {}
 
-    Q_INVOKABLE double evaluate(const QString &expression)
+public:
+    explicit ParserClassQML(QObject *parent = nullptr)
+        : QObject(parent) {}
+
+    Q_INVOKABLE QString evaluate(const QString &expression)
     {
         try
         {
             ParserClass parser(expression);
-            return parser.evaluate();
-        } catch (const std::exception &e)
+            return parser.evaluateToString(25);  // 25 знаков после запятой
+        }
+        catch (const std::exception &e)
         {
-            qWarning("Parser error: %s", e.what());
-            return 0.0;
+            qWarning() << "Parser error:" << e.what();
+            return "Error";
         }
     }
 };
 
-#endif //MYCALC_PARSERCLASSQML_H
+#endif // MYCALC_PARSERCLASSQML_H

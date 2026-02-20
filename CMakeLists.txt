@@ -43,6 +43,12 @@ target_link_libraries(MyCalc
         Qt6::Svg
 )
 
+target_include_directories(MyCalc PRIVATE
+        C:/boost_1_90_0
+)
+
+target_include_directories(MyCalc PRIVATE ${Boost_INCLUDE_DIRS})
+
 set(CMAKE_BIN_DIR "${CMAKE_SOURCE_DIR}/cmake-build-debug")
 
 if(WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)

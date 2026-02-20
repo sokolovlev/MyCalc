@@ -4,13 +4,18 @@
 #include <QString>
 #include <QVector>
 #include <stdexcept>
+#include <boost/multiprecision/cpp_dec_float.hpp>
+
+using boost::multiprecision::cpp_dec_float_50;
 
 class ParserClass
 {
 public:
     explicit ParserClass(const QString &calculationData);
 
-    double evaluate();
+    cpp_dec_float_50 evaluate();
+
+    QString evaluateToString(int precision = 25);
 
 private:
     enum class TokenType
@@ -34,9 +39,9 @@ private:
 
     void tokenize();
 
-    double parseExpression();
-    double parseTerm();
-    double parseFactor();
+    cpp_dec_float_50 parseExpression();
+    cpp_dec_float_50 parseTerm();
+    cpp_dec_float_50 parseFactor();
 
     bool match(TokenType type);
     bool check(TokenType type) const;
